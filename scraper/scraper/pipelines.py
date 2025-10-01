@@ -8,13 +8,19 @@
 from itemadapter import ItemAdapter
 from jobs.models import Job,Company,Skill
 from datetime import datetime
+from asgiref.sync import sync_to_async
 
 class DjangoPipeline:
-    def process_item(self,item,spider):
+    async def process_item(self,item,spider):
+        await self.save_job(item)
+        return item
+    @sync_to_async
+    def save_job(self,item):
         company,_=Company.objects.get_or_create(name=item.get('company'))
         job=Job.objects.create(title=item.get('title'),company=company,location=item.get('location'),salary=item.get('salary'),description=item.get('description'),posted_at=item.get('posted_at') or None)
         for skill_name in item.get('skills',[]):
-            skill=Skill.objects.get(name=skill_name.strip())
-            job.skills.add(skill)
+            skill_name=skill_name.strip()
+            if skill_name:
+                skill,_=Skill.objects.get_or_create(name=skill_name)
+                job.skills.add(skill)
         job.save()
-        return item

@@ -23,11 +23,19 @@ SPIDER_MODULES = ["scraper.spiders"]
 NEWSPIDER_MODULE = "scraper.spiders"
 
 
+# DOWNLOAD_HANDLERS = {
+#     'http':'scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler',
+#     'https':'scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler',
+# }
+
+# TWISTED_REACTOR = 'twisted.internet.asynioreactor.AsyncioSelectorReactor'
+# PLAYWRIGHT_BROWSER_TYPE = 'chromium'
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "scraper (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
