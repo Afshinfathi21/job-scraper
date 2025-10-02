@@ -15,7 +15,7 @@ class Skill(models.Model):
         return self.name
 
 class Job(models.Model):
-    title=models.CharField(max_length=250)
+    title=models.CharField(max_length=250,unique=True)
     company=models.ForeignKey(Company, on_delete=models.CASCADE)
     location=models.CharField(max_length=250,blank=True,null=True)
     salary=models.CharField(max_length=100,blank=True,null=True)

@@ -44,7 +44,8 @@ class JobvisionSpider(scrapy.Spider):
             'title':data['data']['title'],
             'description':data['data']['description'],
             'company':data['data']['company']['name']['titleFa'],
-            'location':f'{data['data']['location']['province']['titleFa']},{data['data']['location']['city']['titleFa']}',
+            'company_url':data['data']['company']['website'],
+            'location':data['data']['location']['province']['titleFa'],
             'salary':data['data']['salary']['titleFa'],
             'skills':skills,
             'posted_at':data['data']['activationTime']['date']

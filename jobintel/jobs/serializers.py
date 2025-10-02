@@ -11,7 +11,7 @@ class SkillSerializer(serializers.ModelSerializer):
         fields='__all__'
 class JobSerializer(serializers.ModelSerializer):
     company=CompanySerializer()
-    skill=SkillSerializer(many=True)
+    skills=SkillSerializer(many=True)
     class Meta:
         model=Job
         fields='__all__'

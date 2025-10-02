@@ -14,6 +14,7 @@ class ScraperItem(scrapy.Item):
 class JobItem(scrapy.Item):
     title=scrapy.Field()
     company=scrapy.Field()
+    company_url=scrapy.Field()
     location=scrapy.Field()
     salary=scrapy.Field()
     description=scrapy.Field()
