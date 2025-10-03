@@ -16,12 +16,12 @@ It is built with Django, Django REST Framework, Celery, Scrapy, Redis, and Postg
 ---
 
 ## 📦 Project Structure
-jobintel/               # Django project (backend API)
-jobs/                   # Django app for jobs, companies, skills
-scraper/                # Scrapy project (spiders, pipelines)
-docker-compose.yml      # Orchestrates all services
-backend/Dockerfile      # Django & Celery image
-entrypoint.sh           # Startup script (runs migrations, etc.)
+- jobintel/               # Django project (backend API)
+- jobs/                   # Django app for jobs, companies, skills
+- scraper/                # Scrapy project (spiders, pipelines)
+- docker-compose.yml      # Orchestrates all services
+- backend/Dockerfile      # Django & Celery image
+- entrypoint.sh           # Startup script (runs migrations, etc.)
 ---
 
 ## 🛠️ Tech Stack
