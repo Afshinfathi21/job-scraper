@@ -8,11 +8,25 @@ services:
       - .:/app
     ports:
       - "8000:8000"
+    env_file:
+      - .env
     depends_on:
       - redis
+      - db
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=jobintel
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
 
   celery_worker:
     build: .
@@ -20,8 +34,11 @@ services:
     command: celery -A jobintel worker -l info
     volumes:
       - .:/app
+    env_file:
+      - .env
     depends_on:
       - redis
+      - db
 
   celery_beat:
     build: .
@@ -29,11 +46,17 @@ services:
     command: celery -A jobintel beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     volumes:
       - .:/app
+    env_file:
+      - .env
     depends_on:
       - redis
+      - db
 
   redis:
     image: redis:6
     container_name: jobintel_redis
     ports:
       - "6379:6379"
+
+volumes:
+  postgres_data:

@@ -77,10 +77,20 @@ WSGI_APPLICATION = 'jobintel.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME','jobintel'),
+        'USER':os.getenv('DB_USER','user'),
+        'PASSWORD':os.getenv('DB_PASSWORD','password'),
+        'HOST':os.getenv('DB_HOST','db'),
+        'PORT':os.getenv('DB_PORT','5432'),
     }
 }
 
@@ -137,7 +147,7 @@ from datetime import timedelta
 CELERY_BEAT_SCHEDULE = {
     "scrape-jobvision-daily": {
         "task": "jobs.tasks.run_jobvision_spider",
-        "schedule": crontab(hour=6, minute=0),  # 6 AM daily
-        # "schedule": timedelta(minutes=1),
+        # "schedule": crontab(hour=18, minute=0),  # 6 AM daily
+        "schedule": timedelta(minutes=1),
     },
 }

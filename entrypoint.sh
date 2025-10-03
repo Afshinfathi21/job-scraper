@@ -4,7 +4,7 @@
 set -e
 
 # Apply database migrations
-export PYTHONPATH="/app/jobintel:$PYTHONPATH"
+export PYTHONPATH="/app:/app/jobintel:$PYTHONPATH"
 echo "Applying database migrations..."
 python jobintel/manage.py migrate
 
