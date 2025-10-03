@@ -55,8 +55,6 @@ Now the Django API is available at:
 
 ## 📡 Running Scrapers
 
-### Manually trigger a spider
-docker-compose exec backend python manage.py runscript run_spider
 ### With Celery (scheduled)
 - Celery Beat schedules spiders (e.g., every day at 6 AM)
 - Celery Worker runs the tasks asynchronously
