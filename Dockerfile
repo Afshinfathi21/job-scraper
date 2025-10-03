@@ -10,6 +10,7 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+
 ENTRYPOINT ["./entrypoint.sh"]
 
 EXPOSE 8000

@@ -3,7 +3,7 @@ services:
   django:
     build: .
     container_name: jobintel_django
-    command: python jobintel/manage.py runserver 0.0.0.0:8000 && python jobintel/manage.py migrate
+    command: python jobintel/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
@@ -36,6 +36,8 @@ services:
       - .:/app
     env_file:
       - .env
+    environment:
+      - SCRAPY_SETTINGS_MODULE=scraper.scraper.settings
     depends_on:
       - redis
       - db
@@ -48,6 +50,8 @@ services:
       - .:/app
     env_file:
       - .env
+    environment:
+      - SCRAPY_SETTINGS_MODULE=scraper.scraper.settings
     depends_on:
       - redis
       - db

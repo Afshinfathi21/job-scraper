@@ -6,17 +6,10 @@ from scraper.scraper.spiders.jobvision_spider import JobvisionSpider
 import sys,os
 
 
+
 @shared_task
 def run_jobvision_spider():
-    # def _crawl():
-    #     process = CrawlerProcess(get_project_settings())
-    #     process.crawl(JobvisionSpider)
-    #     process.start()
-
     process = CrawlerProcess(get_project_settings())
     print(get_project_settings())
     process.crawl(JobvisionSpider)
     process.start()
-    # p = Process(target=_crawl)
-    # p.start()
-    # p.join()
