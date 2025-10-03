@@ -1,4 +1,4 @@
-# JobIntel
+# Jobscraper
 
 job-scraper is a web application that scrapes job postings from multiple sources, stores them in a structured database, and provides an API to query job listings.  
 It is built with Django, Django REST Framework, Celery, Scrapy, Redis, and Postgres, all orchestrated with Docker.
